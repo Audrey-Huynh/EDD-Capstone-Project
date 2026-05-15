@@ -71,8 +71,10 @@ app.use(helmet.frameguard({ action: "SAMEORIGIN" }));
 const cspOptions = {
   directives: {
     defaultSrc: ["'self'"],
-    scriptSrc: ["'self'"],
-    frameSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    imgSrc: ["'self'", "data:", "https:"],
+    connectSrc: ["'self'", "https:"],
   },
 };
 if (process.env.NODE_ENV === "production") {
@@ -117,17 +119,17 @@ app.post("/subscribe", (req, res) => {
   const subscription = req.body;
   subscriptions.push(subscription);
 
-  res.status(200).json({status: "success"});
+  res.status(200).json({ status: "success" });
 });
 
 app.post("/send-notification", (req, res) => {
   const notificationPayload = {
-      title: req.body.title || "Water Reminder",
-      body: req.body.body || "Don't forget to drink water!",
-      icon: req.body.icon || "",
-      data: {
-        url: req.body.url || "http://localhost:8000/dashboard",
-      },
+    title: req.body.title || "Water Reminder",
+    body: req.body.body || "Don't forget to drink water!",
+    icon: req.body.icon || "",
+    data: {
+      url: req.body.url || "http://localhost:8000/dashboard",
+    },
   };
 
   Promise.all(
@@ -135,7 +137,7 @@ app.post("/send-notification", (req, res) => {
       webpush.sendNotification(subscription, JSON.stringify(notificationPayload))
     )
   )
-    .then(() => res.status(200).json({ }))
+    .then(() => res.status(200).json({}))
     .catch((err) => {
       console.error("Error sending notification");
       res.sendStatus(500);
