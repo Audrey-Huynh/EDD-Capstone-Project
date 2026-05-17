@@ -35,7 +35,7 @@
     "luxon": "^3.7.2",
     "mysql2": "^3.17.4",
     "next": "16.1.6",
-    "picomatch": "^2.3.2",
+    "picomatch": "^4.0.4",
     "react": "19.2.3",
     "react-confetti-explosion": "^3.0.3",
     "react-dom": "19.2.3",
