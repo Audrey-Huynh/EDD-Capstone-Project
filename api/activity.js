@@ -69,7 +69,6 @@ Router.post('/end', async (req, res) => { // TODO: handle water breaks that have
   autoSignin(req, res, async (userId) => {
     try {
       const breakData = await redisClient.get(`break:${userId}`);
-      console.log("Break data:", breakData);
 
       if (!breakData) {
         return res.status(400).send({

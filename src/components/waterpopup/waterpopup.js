@@ -87,7 +87,7 @@ export default function WaterPopup({ setIsWaterPopupOpen, triggerTimerRefresh, s
     setIsWaterPopupOpen(false);
     triggerTimerRefresh();
     setTimeout(refreshPets, 100);
-  }, [triggerTimerRefresh]);
+  }, [refreshPets, triggerTimerRefresh, setIsWaterPopupOpen]);
 
   const handleWater = useCallback(async () => {
     setIsWaterPopupOpen(false);
@@ -98,7 +98,7 @@ export default function WaterPopup({ setIsWaterPopupOpen, triggerTimerRefresh, s
     }
     setTimeout(refreshUserInfo, 100);
     setTimeout(refreshPets, 100);
-  }, [triggerTimerRefresh, waterAmount]);
+  }, [waterAmount, refreshPets, refreshUserInfo, setIsEvolvingPopupOpen, setIsWaterPopupOpen]);
 
   return (
     <Paper className={styles.WaterPopup} sx={{ backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.9) }}>

@@ -128,7 +128,7 @@ export default function BreakInformation({ isEyePopupOpen, isWaterPopupOpen, isS
         >
           <ListItemText
             primary="Water Break"
-            secondary={`in ${waterTimeLeft} minutes`}
+            secondary={`in ${Math.round(waterTimeLeft * 100) / 100} minutes`}
           />
         </ListItem>
         <ListItem
@@ -137,7 +137,7 @@ export default function BreakInformation({ isEyePopupOpen, isWaterPopupOpen, isS
         >
           <ListItemText
             primary="Stretch Break"
-            secondary={`in ${stretchTimeLeft} minutes`}
+            secondary={`in ${Math.round(stretchTimeLeft * 100) / 100} minutes`}
           />
         </ListItem>
         <ListItem
@@ -146,7 +146,7 @@ export default function BreakInformation({ isEyePopupOpen, isWaterPopupOpen, isS
         >
           <ListItemText
             primary="Eye Break"
-            secondary={`in ${eyeTimeLeft} minutes`}
+            secondary={`in ${Math.round(eyeTimeLeft * 100) / 100} minutes`}
           />
         </ListItem>
       </List>
